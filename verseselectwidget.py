@@ -37,12 +37,29 @@ class VerseSelectWidget(QtWidgets.QTabWidget):
         self.verse_select_layout.addWidget(self.verse_select)
         self.layout.addItem(self.verse_select_layout)
 
-
         self.setLayout(self.layout)
 
     def book_changed(self, e):
-        print(e)
-    
+        self.repopulate_chapter_select()
+        self.repopulate_verse_select()
+
     def chapter_changed(self, e):
-        print(e)
+        self.repopulate_verse_select()
+        
+    def repopulate_verse_select(self):
+        print("repopuplate verse")
+        book = self.book_select.currentText()
+        self.verse_select.clear()
+        self.verse_select.addItems([str(x) for x in self.indices.get_verses(book, 1)])
+        self.verse_select.setCurrentIndex(0)
+
+
+    def repopulate_chapter_select(self):
+        print("repopuplate chapter")
+        book = self.book_select.currentText()
+        self.chapter_select.clear()
+        self.chapter_select.addItems([str(x) for x in self.indices.get_chapters(book)])
+        self.chapter_select.setCurrentIndex(0)
+
+
 
