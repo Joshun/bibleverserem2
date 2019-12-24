@@ -21,7 +21,12 @@ class VersionSelectWidget(QtWidgets.QWidget):
         super().__init__()
 
         self.layout = QtWidgets.QHBoxLayout()
-        self.layout.addItem(QtWidgets.QRadioButton().setText("Online"))
+        self.layout.setAlignment(QtCore.Qt.AlignTop)
+        self.setLayout(self.layout)
+        online_select = QtWidgets.QRadioButton("Online")
+        sword_select = QtWidgets.QRadioButton("Sword module")
+        self.layout.addWidget(online_select)
+        self.layout.addWidget(sword_select)
 
 class MainWindow(QtWidgets.QTabWidget):
     def __init__(self):
@@ -31,8 +36,8 @@ class MainWindow(QtWidgets.QTabWidget):
         self.toplevel_layout = QtWidgets.QVBoxLayout()
         self.toplevel_layout.setAlignment(QtCore.Qt.AlignTop)
 
-        version_select = VersionSelectWidget()
-        self.addTab(version_select, "Version")
+        self.version_select = VersionSelectWidget()
+        self.addTab(self.version_select, "Version")
 
         self.verse_select_widget = VerseSelectWidget()
         self.addTab(self.verse_select_widget, "Verse")
