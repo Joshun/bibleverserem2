@@ -15,7 +15,13 @@ class TimeSelectWidget(QtWidgets.QWidget):
         self.layout.addWidget(QtWidgets.QLabel("Time delay (minutes):"))
         self.time_select_widget = QtWidgets.QSpinBox()
         self.layout.addWidget(self.time_select_widget)
-            
+
+class VersionSelectWidget(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.layout = QtWidgets.QHBoxLayout()
+        self.layout.addItem(QtWidgets.QRadioButton().setText("Online"))
 
 class MainWindow(QtWidgets.QTabWidget):
     def __init__(self):
@@ -25,9 +31,12 @@ class MainWindow(QtWidgets.QTabWidget):
         self.toplevel_layout = QtWidgets.QVBoxLayout()
         self.toplevel_layout.setAlignment(QtCore.Qt.AlignTop)
 
+        version_select = VersionSelectWidget()
+        self.addTab(version_select, "Version")
+
         self.verse_select_widget = VerseSelectWidget()
         self.addTab(self.verse_select_widget, "Verse")
-        self.verse_select_widget.show()
+        # self.verse_select_widget.show()
 
         self.time_select_widget = TimeSelectWidget()
         self.addTab(self.time_select_widget, "Time")
