@@ -6,16 +6,30 @@ from bibindices import Indices
 
 from verseselectwidget import VerseSelectWidget
 
+class TimeSelectWidget(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.layout = QtWidgets.QHBoxLayout()
+        self.setLayout(self.layout)
+        self.layout.setAlignment(QtCore.Qt.AlignTop)
+        self.layout.addWidget(QtWidgets.QLabel("Time delay (minutes):"))
+        self.time_select_widget = QtWidgets.QSpinBox()
+        self.layout.addWidget(self.time_select_widget)
+            
+
 class MainWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
         self.toplevel_layout = QtWidgets.QVBoxLayout()
+        self.toplevel_layout.setAlignment(QtCore.Qt.AlignTop)
 
         self.verse_select_widget = VerseSelectWidget()
         self.toplevel_layout.addWidget(self.verse_select_widget)
         self.verse_select_widget.show()
-        # self.verse_select_layout = QtWidgets.QHBoxLayout()        
+
+        self.time_select_widget = TimeSelectWidget()
+        self.toplevel_layout.addWidget(self.time_select_widget)
         # self.verse_select_layout.addWidget(QtWidgets.QLabel("Book:"))
         # self.book_select = QtWidgets.QComboBox()
 

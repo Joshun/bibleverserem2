@@ -2,7 +2,7 @@ from PySide2 import QtCore, QtWidgets, QtGui
 
 from bibindices import Indices
 
-class VerseSelectWidget(QtWidgets.QTabWidget):
+class VerseSelectWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.indices = Indices()
