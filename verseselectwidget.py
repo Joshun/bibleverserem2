@@ -28,7 +28,15 @@ class VerseSelectWidget(QtWidgets.QTabWidget):
         self.chapter_select.currentTextChanged.connect(self.chapter_changed)
         self.layout.addItem(self.chapter_select_layout)
 
-        
+        self.verse_select_layout = QtWidgets.QHBoxLayout()
+        self.verse_select_layout.setAlignment(QtCore.Qt.AlignTop)
+        self.verse_select_layout.addWidget(QtWidgets.QLabel("Verse:"))
+        chapter = self.chapter_select.currentText()
+        self.verse_select = QtWidgets.QComboBox()
+        self.verse_select.addItems([str(x) for x in self.indices.get_verses(book, int(chapter))])
+        self.verse_select_layout.addWidget(self.verse_select)
+        self.layout.addItem(self.verse_select_layout)
+
 
         self.setLayout(self.layout)
 
