@@ -17,19 +17,20 @@ class TimeSelectWidget(QtWidgets.QWidget):
         self.layout.addWidget(self.time_select_widget)
             
 
-class MainWindow(QtWidgets.QWidget):
+class MainWindow(QtWidgets.QTabWidget):
     def __init__(self):
         super().__init__()
+
 
         self.toplevel_layout = QtWidgets.QVBoxLayout()
         self.toplevel_layout.setAlignment(QtCore.Qt.AlignTop)
 
         self.verse_select_widget = VerseSelectWidget()
-        self.toplevel_layout.addWidget(self.verse_select_widget)
+        self.addTab(self.verse_select_widget, "Verse")
         self.verse_select_widget.show()
 
         self.time_select_widget = TimeSelectWidget()
-        self.toplevel_layout.addWidget(self.time_select_widget)
+        self.addTab(self.time_select_widget, "Time")
         # self.verse_select_layout.addWidget(QtWidgets.QLabel("Book:"))
         # self.book_select = QtWidgets.QComboBox()
 
