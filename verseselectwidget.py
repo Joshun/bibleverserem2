@@ -15,6 +15,7 @@ class VerseSelectWidget(QtWidgets.QTabWidget):
         self.book_select = QtWidgets.QComboBox()
         self.book_select.addItems(self.indices.get_books())
         self.book_select_layout.addWidget(self.book_select)
+        self.book_select.currentTextChanged.connect(self.book_changed)
         self.layout.addItem(self.book_select_layout)
 
         self.chapter_select_layout = QtWidgets.QHBoxLayout()
@@ -24,8 +25,16 @@ class VerseSelectWidget(QtWidgets.QTabWidget):
         self.chapter_select = QtWidgets.QComboBox()
         self.chapter_select.addItems([str(x) for x in self.indices.get_chapters(book)])
         self.chapter_select_layout.addWidget(self.chapter_select)
+        self.chapter_select.currentTextChanged.connect(self.chapter_changed)
         self.layout.addItem(self.chapter_select_layout)
 
         
 
         self.setLayout(self.layout)
+
+    def book_changed(self, e):
+        print(e)
+    
+    def chapter_changed(self, e):
+        print(e)
+
